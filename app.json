@@ -8,5 +8,14 @@
     "assetBundlePatterns": [
       "**/*"
     ]
-  }
+  },
+  "platforms": [
+    "ios",
+    "android"
+  ],
+  "android": {
+    "package": "com.selita.appBareUpdate",
+    "versionCode": 1,
+    "publishManifestPath": "https://exp.host/@jonathasgoncalves/bareAPPUpdate"
+    }
 }
