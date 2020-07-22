@@ -1,0 +1,12 @@
+{
+  "name": "bareAPPUpdate",
+  "displayName": "bareAPPUpdate",
+  "expo": {
+    "name": "bareAPPUpdate",
+    "slug": "bareAPPUpdate",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
