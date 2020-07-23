@@ -5,41 +5,17 @@ import { StyleSheet, Text, View, ActivityIndicator, Alert } from 'react-native';
 
 export default function App() {
   const [updateController, setUpdateController] = useState(false); 
-  //const [alertCheck, setAlertCheck] = useState(false);
 
   useEffect(() => {
     async function updateAPP () {
-
-      Alert.alert(
-        'updateAPP',
-        'Na função',
-        [
-            { text: 'OK' },
-        ]
-      );
-
-      setUpdateController(true);
-
       try {
         const update = await Updates.checkForUpdateAsync();
-        Alert.alert(
-          'checkForUpdateAsync',
-          `Possui updates? ${update.isAvailable}`,
-          [
-              { text: 'OK' },
-          ]
-        );
         if (update.isAvailable) {
+          setUpdateController(true);
           const updateEnd = await Updates.fetchUpdateAsync();
-          Alert.alert(
-            'fetchUpdateAsync',
-            `Atualizou? ${updateEnd.isNew}`,
-            [
-                { text: 'OK' },
-            ]
-          );
-          // ... notify user of update ...
+          setUpdateController(false);
           await Updates.reloadAsync();
+        } else {
           setUpdateController(false);
         }
       } catch (e) {
@@ -58,15 +34,17 @@ export default function App() {
   return (
     <View style={styles.container}>
       {updateController && 
-        <ActivityIndicator size='large' color='green'/>
+        <>
+          <ActivityIndicator size='large' color='green'/>
+          <Text>Atualizando versão do APP...</Text>
+        </>
       }
       {!updateController &&
         <>
         <Text>Atualização OTA</Text>
-        <Text>Versão 1.0</Text>
+        <Text style={{color:'blue'}}>Versão 3.1</Text>
       </>
       }
-      
       <StatusBar style="auto" />
     </View>
   );
